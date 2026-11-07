@@ -1,0 +1,48 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 880 >>
+stream
+BT /F2 26 Tf 56 780 Td (Sitaram Oli) Tj ET
+BT /F1 12 Tf 56 746 Td (Software Engineer  |  Sudbury, ON, Canada) Tj ET
+BT /F1 10 Tf 56 726 Td (hello@sitaramoli.dev) Tj ET
+BT /F2 11 Tf 56 696 Td (PROFILE) Tj ET
+BT /F1 10 Tf 56 677 Td (Builds secure, scalable, user-centric digital solutions at the intersection of) Tj ET
+BT /F1 10 Tf 56 659 Td (software engineering and cybersecurity. 3+ years of experience, 10+ projects delivered.) Tj ET
+BT /F2 11 Tf 56 629 Td (FOCUS) Tj ET
+BT /F1 10 Tf 56 610 Td (Software Engineering  /  Cybersecurity  /  AI-ML  /  Full-Stack Development) Tj ET
+BT /F2 11 Tf 56 580 Td (EDUCATION) Tj ET
+BT /F1 10 Tf 56 561 Td (MSc, Computational Science  \(2024 - 2026\)) Tj ET
+BT /F2 11 Tf 56 531 Td (NOTE) Tj ET
+BT /F1 10 Tf 56 512 Td (This is a placeholder CV. Replace public/Sitaram-Oli-CV.pdf with your own.) Tj ET
+1 0.353 0.122 RG 2 w 56 745 m 180 745 l S
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+6 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000001181 00000 n 
+0000001251 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1326
+%%EOF
