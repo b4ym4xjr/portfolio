@@ -153,7 +153,7 @@ export function Expertise() {
     <section
       id="expertise"
       data-cursor-theme="dark"
-      className="relative bg-ink py-24 text-paper md:py-40"
+      className="relative bg-ink py-24 text-paper md:py-32"
     >
       <div className="wrap">
         <SectionLabel index="03" title="Expertise" />
@@ -188,7 +188,7 @@ export function Expertise() {
           ))}
         </ul>
 
-        <p className="mono-label mt-8 flex items-center gap-2 text-paper/50">
+        <p className="mono-label mt-8 flex items-center gap-2 text-paper/70">
           <ArrowUpRight className="size-3.5" strokeWidth={1.5} /> Hover a discipline
         </p>
       </div>

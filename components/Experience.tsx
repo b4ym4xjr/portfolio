@@ -11,7 +11,7 @@ export function Experience() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 65%", "end 55%"] });
 
   return (
-    <section id="experience" className="relative py-24 md:py-40">
+    <section id="experience" className="relative py-24 md:py-32">
       <div className="wrap">
         <SectionLabel index="04" title="Experience" />
 
@@ -53,7 +53,7 @@ export function Experience() {
                 />
 
                 <div className="md:col-span-3 md:pr-12 md:text-right">
-                  <span className="mono-label block text-ink/60">{job.period}</span>
+                  <span className="mono-label block text-ink/75">{job.period}</span>
                   {job.current && (
                     <span className="mono-label mt-2 inline-flex items-center gap-2 text-accent">
                       <span className="size-1.5 animate-blink rounded-full bg-accent" /> Current
@@ -67,7 +67,7 @@ export function Experience() {
                   </h3>
                   <Reveal delay={0.1} className="mt-4 flex flex-wrap items-baseline gap-x-4">
                     <span className="font-serif text-[1.6rem] italic leading-none md:text-[2rem]">{job.org}</span>
-                    <span className="mono-label text-ink/50">{job.place}</span>
+                    <span className="mono-label text-ink/70">{job.place}</span>
                   </Reveal>
                   <Reveal delay={0.18} as="p" className="mt-6 max-w-[52ch] text-[1.05rem] leading-snug tracking-tight text-ink/75">
                     {job.blurb}

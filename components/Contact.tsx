@@ -8,6 +8,7 @@ import { Marquee } from "@/components/Marquee";
 import { socialIcons } from "@/components/ui/icons";
 import { Magnetic, MaskText, Reveal, SectionLabel } from "@/components/ui/motion";
 import { profile, socials } from "@/lib/data";
+import { scrollToTarget } from "@/lib/scroll";
 import { EASE_OUT } from "@/lib/utils";
 
 function subscribeMinute(cb: () => void) {
@@ -99,7 +100,7 @@ export function Contact() {
                   onClick={(e) => {
                     e.preventDefault();
                     const form = document.getElementById("contact-form");
-                    form?.scrollIntoView({ behavior: "smooth", block: "center" });
+                    if (form) scrollToTarget(form, { offset: -(window.innerHeight / 2 - form.offsetHeight / 2) });
                     window.setTimeout(() => form?.querySelector<HTMLInputElement>("input[name=name]")?.focus({ preventScroll: true }), 600);
                   }}
                   data-cursor="link"
@@ -165,7 +166,7 @@ export function Contact() {
           <button
             type="button"
             data-cursor="link"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            onClick={() => scrollToTarget(0)}
             className="group inline-flex items-center gap-2 self-start uppercase tracking-[0.14em] md:self-auto"
           >
             Back to top

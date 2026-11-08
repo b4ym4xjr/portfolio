@@ -130,7 +130,7 @@ export function Portrait({
 
       {/* the portrait itself — monochrome, masked into the blob */}
       <motion.div
-        className="absolute inset-0 z-30"
+        className="group absolute inset-0 z-30"
         style={{ x: photoX, y: photoY }}
         initial={{ opacity: 0 }}
         animate={loaded ? { opacity: 1 } : {}}
@@ -140,12 +140,23 @@ export function Portrait({
       >
         <div className="absolute inset-0" style={{ clipPath: "url(#portrait-blob)" }}>
           {src ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={src}
-              alt="Portrait of Sitaram Oli"
-              className="size-full object-cover grayscale contrast-[1.08]"
-            />
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={src}
+                alt="Portrait of Sitaram Oli"
+                className="size-full object-cover object-top grayscale contrast-[1.1]"
+              />
+              {/* print-style dot screen over the photo; it relaxes on hover */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0 opacity-30 mix-blend-multiply transition-opacity duration-700 group-hover:opacity-0"
+                style={{
+                  backgroundImage: `radial-gradient(circle at center, ${PALETTE.ink} 0.9px, transparent 1.3px)`,
+                  backgroundSize: "5px 5px",
+                }}
+              />
+            </>
           ) : (
             <>
               <div className="absolute inset-0 bg-paper" />

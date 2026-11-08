@@ -51,6 +51,16 @@ per-IP rate limit, and sets `Reply-To` to the visitor so you can answer straight
      `onboarding@resend.dev` works for testing, but only delivers to your own Resend account email.
 3. Restart `npm run dev`. On Vercel etc., set the same variables in the project settings.
 
+Optional hardening (all env-gated, see `.env.example`):
+
+- **Shared rate limit** — `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`. Without them a
+  per-instance in-memory limiter is used, which resets on restart and isn't shared on serverless.
+- **Cloudflare Turnstile** — set `NEXT_PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` to show the
+  widget and verify it server-side.
+- **Auto-reply** — `CONTACT_AUTOREPLY=true` sends the visitor a short confirmation (off by default; pair
+  it with Turnstile).
+- **`NEXT_PUBLIC_SITE_URL`** — canonical URL for the Open Graph image, sitemap and robots.txt.
+
 Without `RESEND_API_KEY` the form shows a friendly "not configured" message instead of failing.
 
 ## Edit the content
@@ -77,5 +87,12 @@ lib/            data.ts (content), halftone.ts (procedural monochrome scenes), u
 - **Motion**: preloader curtain, masked line reveals, scroll-linked paragraph fade, parallax plates,
   a timeline that draws as you scroll, morphing blobs and a mouse-parallax hero. Respects
   `prefers-reduced-motion`.
+- **Smooth scroll** is Lenis on fine pointers (native scrolling on touch / reduced motion); use
+  `scrollToTarget()` from `lib/scroll.ts` for programmatic scrolling. The marquee speeds up, skews and
+  reverses with scroll velocity. The preloader plays once per browser session.
+- **Photo treatment**: a real `public/portrait.*` is shown grayscale with a print-style dot screen that
+  relaxes on hover. Plates in `lib/halftone.ts` are procedural scenes (`orb`, `ridges`, `arch`, `dawn`,
+  `parcels`, …) — add a scene there and reference it in `lib/data.ts`.
+- **SEO**: `app/opengraph-image.tsx`, `app/sitemap.ts`, `app/robots.ts`.
 - Brand icons (GitHub, LinkedIn, YouTube, X) are inline SVGs in `components/ui/icons.tsx` because
   `lucide-react` v1 ships no brand icons.

@@ -87,7 +87,7 @@ function Card({ project, i }: { project: Project; i: number }) {
           >
             <Halftone
               scene={project.scene}
-              cell={project.scene === "contour" ? 7 : 6}
+              cell={6}
               inverted={inverted}
               paper={tonePaper[project.tone]}
               className="size-full"
@@ -136,7 +136,7 @@ function Card({ project, i }: { project: Project; i: number }) {
             />
           </h3>
 
-          <Reveal delay={0.1} className="mono-label mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-ink/60">
+          <Reveal delay={0.1} className="mono-label mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-ink/75">
             <span className="text-accent">{project.kind}</span>
             <span aria-hidden>/</span>
             <span>{project.role}</span>
@@ -161,7 +161,7 @@ function Card({ project, i }: { project: Project; i: number }) {
 
 export function Work() {
   return (
-    <section id="work" className="relative border-t border-ink/20 py-24 md:py-40">
+    <section id="work" className="relative border-t border-ink/20 py-24 md:py-32">
       <div className="wrap">
         <SectionLabel index="02" title="Selected Work" />
 
@@ -175,7 +175,7 @@ export function Work() {
           <Sparkle className="hidden size-14 shrink-0 text-accent md:block" />
         </div>
 
-        <div className="mt-24 flex flex-col gap-28 md:mt-36 md:gap-44">
+        <div className="mt-24 flex flex-col gap-24 md:mt-32 md:gap-32">
           {projects.map((p, i) => (
             <Card key={p.title} project={p} i={i} />
           ))}

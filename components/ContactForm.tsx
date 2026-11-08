@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Check, LoaderCircle } from "lucide-react";
 import { useState, type FormEvent } from "react";
+import { Turnstile } from "@/components/Turnstile";
 import { Magnetic } from "@/components/ui/motion";
 import { cn, EASE_OUT } from "@/lib/utils";
 
@@ -10,15 +11,18 @@ type Status = "idle" | "sending" | "sent" | "error";
 type Fields = { name: string; email: string; message: string };
 
 const MAX_MESSAGE = 5000;
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 const fieldClass =
-  "peer block w-full border-0 border-b border-ink bg-transparent pb-3 pt-2 text-[clamp(1.25rem,2vw,1.75rem)] font-medium tracking-tight text-ink outline-none transition-[padding,border-color] duration-500 placeholder:text-ink/35 focus:border-b-[3px] focus:pb-[10px]";
+  "peer block w-full border-0 border-b border-ink bg-transparent pb-3 pt-2 text-[clamp(1.25rem,2vw,1.75rem)] font-medium tracking-tight text-ink outline-none transition-[padding,border-color] duration-500 placeholder:text-ink/55 focus:border-b-[3px] focus:pb-[10px]";
 
 export function ContactForm() {
   const [values, setValues] = useState<Fields>({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [errorField, setErrorField] = useState<keyof Fields | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileReset, setTurnstileReset] = useState(0);
 
   const set = (k: keyof Fields) => (e: { target: { value: string } }) => {
     setValues((v) => ({ ...v, [k]: e.target.value }));
@@ -30,6 +34,11 @@ export function ContactForm() {
     if (status === "sending") return;
 
     const form = new FormData(e.currentTarget);
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setStatus("error");
+      setError("Please complete the verification check.");
+      return;
+    }
     setStatus("sending");
     setError("");
     setErrorField(null);
@@ -38,9 +47,12 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, company: form.get("company") ?? "" }),
+        body: JSON.stringify({ ...values, company: form.get("company") ?? "", turnstileToken }),
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; field?: keyof Fields };
+      // a Turnstile token is single-use — always ask for a fresh one
+      setTurnstileToken(null);
+      setTurnstileReset((n) => n + 1);
       if (!res.ok || !data.ok) {
         setStatus("error");
         setError(data.error ?? "Something went wrong. Please try again.");
@@ -165,6 +177,12 @@ export function ContactForm() {
                 <input name="company" type="text" tabIndex={-1} autoComplete="off" />
               </label>
             </div>
+
+            {TURNSTILE_SITE_KEY && (
+              <div className="md:col-span-2">
+                <Turnstile siteKey={TURNSTILE_SITE_KEY} onToken={setTurnstileToken} resetKey={turnstileReset} />
+              </div>
+            )}
 
             <div className="flex flex-col gap-5 md:col-span-2 md:flex-row md:items-center md:justify-between">
               <Magnetic strength={0.15}>

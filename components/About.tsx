@@ -14,7 +14,7 @@ export function About() {
   const circleY = useTransform(scrollYProgress, [0, 1], ["40%", "-60%"]);
 
   return (
-    <section id="about" className="relative border-t border-ink/20 py-24 md:py-40">
+    <section id="about" className="relative border-t border-ink/20 py-24 md:py-32">
       <div className="wrap">
         <SectionLabel index="01" title="About" />
 
@@ -37,7 +37,7 @@ export function About() {
                 }}
                 transition={{ duration: 1.4, ease: EASE_OUT }}
               >
-                <Halftone scene="contour" cell={6} paper={PALETTE.mist} className="size-full" />
+                <Halftone scene="dawn" cell={6} paper={PALETTE.mist} className="size-full" />
               </motion.div>
               <motion.span
                 aria-hidden
@@ -45,9 +45,9 @@ export function About() {
                 style={{ y: circleY }}
               />
             </motion.div>
-            <p className="mono-label mt-4 flex justify-between text-ink/50">
+            <p className="mono-label mt-4 flex justify-between text-ink/70">
               <span>Fig. 02</span>
-              <span>Terrain, halftone</span>
+              <span>Dawn, halftone</span>
             </p>
           </div>
 
@@ -81,7 +81,7 @@ export function About() {
                   delay={i * 0.08}
                   className="grid grid-cols-[7.5rem_1fr] items-baseline gap-4 border-t border-ink/20 py-5 last:border-b"
                 >
-                  <dt className="mono-label text-ink/50">{f.k}</dt>
+                  <dt className="mono-label text-ink/70">{f.k}</dt>
                   <dd className="text-xl font-medium tracking-tight md:text-2xl">{f.v}</dd>
                 </Reveal>
               ))}

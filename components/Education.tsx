@@ -16,7 +16,7 @@ export function Education() {
     <section
       ref={ref}
       id="education"
-      className="relative overflow-hidden border-t border-ink/20 bg-mist py-24 md:py-40"
+      className="relative overflow-hidden border-t border-ink/20 bg-mist py-24 md:py-32"
     >
       {/* geometry */}
       <motion.svg
@@ -60,7 +60,7 @@ export function Education() {
                 transition={{ duration: 0.9, ease: EASE_OUT, delay: i * 0.06 }}
               >
                 <div className="flex items-baseline justify-between gap-6">
-                  <span className="mono-label text-ink/60">{e.period}</span>
+                  <span className="mono-label text-ink/75">{e.period}</span>
                   <span className="mono-label text-accent">0{i + 1}</span>
                 </div>
                 <h3

@@ -182,7 +182,54 @@ const contour: Scene = (x, y) => {
   return clamp((0.12 + 0.86 * smooth(0.3, 0.7, band)) * vig + 0.05);
 };
 
-export const SCENES = { portrait, orb, ridges, arch, contour } as const;
+/** Dawn: a pale sun over concentric ripples, ground cut by horizontal strata. */
+const dawn: Scene = (x, y) => {
+  const sx = 0.03;
+  const sy = 0.1;
+  const d = Math.hypot(x - sx, (y - sy) * 1.15);
+  const horizon = 0.16;
+
+  if (y > horizon) {
+    // reflective ground: stripes thicken and darken toward the viewer
+    const t = (y - horizon) / (0.5 - horizon);
+    const stripe = 0.5 + 0.5 * Math.sin((y - horizon) * (150 - 70 * t) + x * 2);
+    const glow = 1 - smooth(0, 0.28, Math.abs(x - sx) + t * 0.1);
+    return clamp(0.1 + 0.8 * smooth(0.25, 0.75, stripe) * (0.25 + 0.75 * glow) * (1 - 0.6 * t));
+  }
+  if (d < 0.15) return 0.97;
+  const band = 0.5 + 0.5 * Math.sin(d * 62);
+  const fade = 1 - smooth(0.16, 0.62, d);
+  return clamp(0.08 + 0.86 * smooth(0.3, 0.7, band) * (0.3 + 0.7 * fade) + 0.05 * (1 - fade));
+};
+
+/** Parcels: rotated field tiles, a winding river and thin access roads — satellite-style. */
+const parcels: Scene = (x, y) => {
+  const a = 0.38;
+  const rx = x * Math.cos(a) - y * Math.sin(a);
+  const ry = x * Math.sin(a) + y * Math.cos(a);
+
+  // river
+  const river = Math.abs(ry - 0.04 * Math.sin(rx * 9) - 0.02 * Math.sin(rx * 23) + 0.05);
+  if (river < 0.026) return 0.96;
+  if (river < 0.034) return 0.12;
+
+  const tx = rx * 7.5;
+  const ty = ry * 7.5;
+  const fx = tx - Math.floor(tx);
+  const fy = ty - Math.floor(ty);
+  // roads between parcels
+  if (fx < 0.05 || fy < 0.05) return 0.94;
+
+  const id = hash(Math.floor(tx), Math.floor(ty));
+  const level = [0.1, 0.3, 0.55, 0.78][Math.floor(id * 4) % 4];
+  // furrows inside each field, direction varies per parcel
+  const dir = id > 0.5 ? fx : fy;
+  const furrow = 0.5 + 0.5 * Math.sin(dir * (28 + id * 20));
+  const vig = 1 - 0.3 * smooth(0.25, 0.75, Math.hypot(x * 0.9, y));
+  return clamp((level + 0.12 * furrow) * vig + (hash(x * 200, y * 200) - 0.5) * 0.04);
+};
+
+export const SCENES = { portrait, orb, ridges, arch, contour, dawn, parcels } as const;
 export type SceneName = keyof typeof SCENES;
 
 /* ------------------------------------------------------------------ */

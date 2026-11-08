@@ -75,7 +75,7 @@ export type Project = {
   role: string;
   blurb: string;
   stack: string[];
-  scene: "orb" | "ridges" | "arch" | "contour";
+  scene: "orb" | "ridges" | "arch" | "parcels";
   tone: "mist" | "ink" | "paper";
   /** tailwind classes positioning the orange geometry that sits on the plate */
   accentClass: string;
@@ -139,7 +139,7 @@ export const projects: Project[] = [
     blurb:
       "A computer-vision pipeline detecting change in satellite imagery — born from MSc coursework in computational science, hardened for scale.",
     stack: ["Python", "NumPy", "scikit-learn", "Docker"],
-    scene: "contour",
+    scene: "parcels",
     tone: "mist",
     accentClass: "right-0 bottom-0 aspect-square w-[34%]",
     accentShape: "half",

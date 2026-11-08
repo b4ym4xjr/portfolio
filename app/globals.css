@@ -48,6 +48,24 @@ html {
   background: #f8f7f4;
 }
 
+/* Lenis owns smoothing when active (these mirror lenis/dist/lenis.css) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+html.lenis,
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* Returning visitors never see the preloader curtain flash */
+html[data-visited] .preloader {
+  display: none;
+}
+
 body {
   background: #f8f7f4;
   color: #111111;

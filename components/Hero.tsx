@@ -78,7 +78,7 @@ export function Hero({ portraitSrc }: { portraitSrc: string | null }) {
                 <span className="size-2 animate-blink rounded-full bg-accent" />
                 {profile.role}
               </span>
-              <span className="mono-label hidden text-ink/50 sm:inline">Portfolio ’26 — Index 01/07</span>
+              <span className="mono-label hidden text-ink/70 sm:inline">Portfolio ’26 — Index 01/07</span>
             </motion.div>
 
             <motion.h1
@@ -160,7 +160,7 @@ export function Hero({ portraitSrc }: { portraitSrc: string | null }) {
             </motion.div>
             <motion.p
               {...enter(1.6)}
-              className="mono-label mt-8 flex justify-between text-ink/50 lg:pl-[8%]"
+              className="mono-label mt-8 flex justify-between text-ink/70 lg:pl-[8%]"
             >
               <span>Fig. 01 — S. Oli</span>
               <span>{profile.location}</span>
@@ -186,7 +186,7 @@ export function Hero({ portraitSrc }: { portraitSrc: string | null }) {
                 <dt className="text-[1.55rem] sm:text-[1.9rem] lg:whitespace-nowrap lg:text-[clamp(1.7rem,2.7vw,2.9rem)] font-bold leading-none tracking-[-0.05em]">
                   {s.count !== null ? <CountUp to={s.count} suffix={s.suffix} /> : s.big}
                 </dt>
-                <dd className="mono-label mt-2.5 text-ink/60">{s.label}</dd>
+                <dd className="mono-label mt-2.5 text-ink/75">{s.label}</dd>
               </div>
             </div>
           ))}

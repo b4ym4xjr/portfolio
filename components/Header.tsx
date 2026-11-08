@@ -136,7 +136,7 @@ export function Header() {
                   className="flex items-baseline justify-between border-b border-ink/10 py-4 text-4xl font-bold tracking-tighter last:border-0"
                 >
                   {item.label}
-                  <span className="mono-label text-ink/50">0{i + 1}</span>
+                  <span className="mono-label text-ink/70">0{i + 1}</span>
                 </a>
               ))}
               <a
