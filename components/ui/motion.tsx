@@ -69,7 +69,9 @@ export function MaskText({
         // the translated child would report it as clipped and never fire.
         <motion.span
           key={i}
-          className={cn("block overflow-hidden py-[0.1em] -my-[0.1em]", lineClasses?.[i])}
+          // Padding top/bottom with matching negative margins: the mask clips the slide-up reveal
+          // but leaves room for ascenders and descenders (g, p, y) at tight display line-heights.
+          className={cn("block overflow-hidden pb-[0.26em] pt-[0.12em] mb-[-0.26em] mt-[-0.12em]", lineClasses?.[i])}
           initial="hidden"
           {...(onLoad
             ? { animate: loaded ? "show" : "hidden" }
@@ -80,7 +82,7 @@ export function MaskText({
         >
           <motion.span
             className="block will-change-transform"
-            variants={{ hidden: { y: "118%" }, show: { y: "0%" } }}
+            variants={{ hidden: { y: "140%" }, show: { y: "0%" } }}
             transition={{ duration: 1.15, ease: EASE_OUT, delay: delay + i * stagger }}
           >
             {line}

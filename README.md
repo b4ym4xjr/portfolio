@@ -1,12 +1,11 @@
 # Sitaram Oli — Portfolio
 
-A minimalist-editorial, Swiss-meets-brutalist personal portfolio.
-**Next.js 16 · TypeScript · Tailwind CSS v4 · Framer Motion · Lucide React**
+A minimalist-editorial, Swiss-meets-brutalist personal portfolio. **Next.js 16 · TypeScript · Tailwind CSS v4 · Framer Motion · Lucide React**
 
 Palette (the only four colours, enforced in `app/globals.css` by wiping Tailwind's defaults):
 
 | Token    | Hex       |
-| -------- | --------- |
+|----------|-----------|
 | `paper`  | `#F8F7F4` |
 | `ink`    | `#111111` |
 | `accent` | `#FF5A1F` |
@@ -23,8 +22,7 @@ npm run build && npm start
 
 ## Add your portrait
 
-The hero portrait is a swappable slot. Until you add a photo it shows a procedural
-**halftone placeholder**.
+The hero portrait is a swappable slot. Until you add a photo it shows a procedural **halftone placeholder**.
 
 1. Save your photo as **`public/portrait.jpg`** (also accepted: `portrait.jpeg`, `portrait.png`, `portrait.webp`).
 2. Restart `npm run dev` (or rebuild). That's it — the site detects the file automatically.
@@ -45,10 +43,10 @@ per-IP rate limit, and sets `Reply-To` to the visitor so you can answer straight
 
 1. Create an API key at <https://resend.com/api-keys>.
 2. `cp .env.example .env.local` and fill in:
-   - `RESEND_API_KEY`
-   - `CONTACT_TO_EMAIL` — where messages land
-   - `CONTACT_FROM_EMAIL` — a sender on a [verified domain](https://resend.com/domains).
-     `onboarding@resend.dev` works for testing, but only delivers to your own Resend account email.
+    - `RESEND_API_KEY`
+    - `CONTACT_TO_EMAIL` — where messages land
+    - `CONTACT_FROM_EMAIL` — a sender on a [verified domain](https://resend.com/domains).
+      `onboarding@resend.dev` works for testing, but only delivers to your own Resend account email.
 3. Restart `npm run dev`. On Vercel etc., set the same variables in the project settings.
 
 Optional hardening (all env-gated, see `.env.example`):
@@ -68,6 +66,14 @@ Without `RESEND_API_KEY` the form shows a friendly "not configured" message inst
 Everything lives in **`lib/data.ts`**: name, intro, socials, projects, expertise, experience,
 education and stats. Items marked `PLACEHOLDER` there (e-mail, social URLs, project names,
 employers, institution) are illustrative — replace them with your real details.
+
+### Projects, availability and credentials
+
+- Each project in `lib/data.ts` can set `result` (outcome / metric) and `linkLabel` ("Case study", "Source"…).
+  The four `result` lines are PLACEHOLDERS — replace them with real outcomes or delete the field.
+- `credentials` in `lib/data.ts` drives the availability line (About + Contact) and the certifications /
+  writing / talks strip. Every entry is a template slot flagged `placeholder: true` and renders with a dashed
+  "Placeholder" marker; replace the entries and drop the flag. Set `credentials.show = false` to hide the strip.
 
 ## Structure
 
