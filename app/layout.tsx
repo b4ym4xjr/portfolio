@@ -4,6 +4,7 @@ import {Shell} from "@/components/Shell";
 import {siteUrl} from "@/lib/site";
 import "./globals.css";
 import React from "react";
+import {Analytics} from "@vercel/analytics/next"
 
 const sans = Inter_Tight({
     variable: "--font-sans-src",
@@ -65,6 +66,7 @@ export default function RootLayout({children}: { children: React.ReactNode; }) {
         </head>
         <body className="grain bg-paper text-ink antialiased">
         <Shell>{children}</Shell>
+        <Analytics/>
         </body>
         </html>
     );
