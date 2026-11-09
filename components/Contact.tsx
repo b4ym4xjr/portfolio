@@ -137,7 +137,10 @@ export function Contact() {
                     <span>© 2026 {profile.name}. All rights reserved.</span>
                     <span className="flex items-center gap-2">
             <span className="size-1.5 animate-blink rounded-full bg-ink"/>
-                        {time ? <span className="tabular-nums">Local time — {time}</span> : <span>Local time</span>}
+                        <span>
+                            {profile.location}, {profile.country}
+                            {time && <span className="tabular-nums"> — {time} local</span>}
+                        </span>
           </span>
                     <button
                         type="button"
