@@ -139,7 +139,7 @@ export function Contact() {
             <span className="size-1.5 animate-blink rounded-full bg-ink"/>
                         <span>
                             {profile.location}, {profile.country}
-                            {time && <span className="tabular-nums"> — {time} local</span>}
+                            <span className="tabular-nums"> — {time ? `${time} local` : "local time"}</span>
                         </span>
           </span>
                     <button
