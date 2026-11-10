@@ -262,7 +262,7 @@ export function Portrait({
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={src}
-                                alt="Portrait of Sitaram Oli"
+                                alt="Portrait of S.R. Oli"
                                 className="size-full object-cover object-top grayscale contrast-[1.1]"
                             />
                             {/* print-style dot screen over the photo; it relaxes on hover */}

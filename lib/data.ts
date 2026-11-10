@@ -121,7 +121,7 @@ export const projects: Project[] = [
         tone: "mist",
         accentClass: "right-[9%] top-[12%] aspect-square w-[20%]",
         accentShape: "circle",
-        href: "https://github.com/sitaramoli",
+        href: "https://github.com/b4ym4xjr",
     },
     {
         index: "02",
@@ -139,7 +139,7 @@ export const projects: Project[] = [
         tone: "paper",
         accentClass: "left-[10%] top-[8%] h-[26%] w-[2.5%]",
         accentShape: "bar",
-        href: "https://github.com/sitaramoli",
+        href: "https://github.com/b4ym4xjr",
     },
     {
         index: "03",
@@ -157,7 +157,7 @@ export const projects: Project[] = [
         tone: "ink",
         accentClass: "left-[8%] bottom-[14%] aspect-square w-[11%]",
         accentShape: "square",
-        href: "https://github.com/sitaramoli",
+        href: "https://github.com/b4ym4xjr",
     },
     {
         index: "04",
@@ -175,7 +175,7 @@ export const projects: Project[] = [
         tone: "mist",
         accentClass: "right-0 bottom-0 aspect-square w-[34%]",
         accentShape: "half",
-        href: "https://github.com/sitaramoli",
+        href: "https://github.com/b4ym4xjr",
     },
 ];
 

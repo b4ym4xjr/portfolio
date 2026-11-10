@@ -1,5 +1,6 @@
 import {Resend} from "resend";
 import {profile} from "@/lib/data";
+import {autoReplyHtml, ownerEmailHtml} from "@/lib/email-templates";
 
 const MAX = {name: 100, email: 254, message: 5000} as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -119,11 +120,19 @@ export async function POST(request: Request) {
 
     const to = process.env.CONTACT_TO_EMAIL || profile.email;
     // Must be a sender on a domain verified in Resend.
-    const from = process.env.CONTACT_FROM_EMAIL || "Portfolio Contact <onboarding@resend.dev>";
+    const from = process.env.CONTACT_FROM_EMAIL || "Portfolio Contact <noreply@sitaramoli.com.np>";
 
     const safeName = escapeHtml(name);
     const safeEmail = escapeHtml(email);
     const safeMessage = escapeHtml(message).replace(/\n/g, "<br />");
+
+    const receivedAt = escapeHtml(
+        new Intl.DateTimeFormat("en-CA", {
+            dateStyle: "medium",
+            timeStyle: "short",
+            timeZone: profile.timeZone,
+        }).format(new Date()),
+    );
 
     const resend = new Resend(apiKey);
     const {error} = await resend.emails.send({
@@ -132,12 +141,7 @@ export async function POST(request: Request) {
         replyTo: email,
         subject: `New message from ${oneLine(name)}`,
         text: `From: ${name} <${email}>\n\n${message}`,
-        html: `<div style="font-family:Helvetica,Arial,sans-serif;color:#111111;background:#F8F7F4;padding:32px">
-  <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 24px;color:#FF5A1F">New portfolio message</p>
-  <p style="margin:0 0 4px;font-size:20px;font-weight:700">${safeName}</p>
-  <p style="margin:0 0 24px"><a href="mailto:${safeEmail}" style="color:#111111">${safeEmail}</a></p>
-  <div style="border-top:1px solid #111111;padding-top:20px;font-size:16px;line-height:1.6">${safeMessage}</div>
-</div>`,
+        html: ownerEmailHtml({safeName, safeEmail, safeMessage, receivedAt}),
     });
 
     if (error) {
@@ -155,12 +159,7 @@ export async function POST(request: Request) {
             replyTo: to,
             subject: `Got your message, ${first}`,
             text: `Hi ${first},\n\nThanks for reaching out — your message landed safely and I'll reply within a couple of days.\n\n— ${profile.name}`,
-            html: `<div style="font-family:Helvetica,Arial,sans-serif;color:#111111;background:#F8F7F4;padding:32px">
-  <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 24px;color:#FF5A1F">Message received</p>
-  <p style="margin:0 0 16px;font-size:22px;font-weight:700">Hi ${escapeHtml(first)},</p>
-  <p style="margin:0 0 24px;font-size:16px;line-height:1.6">Thanks for reaching out — your message landed safely and I’ll reply within a couple of days.</p>
-  <p style="margin:0;border-top:1px solid #111111;padding-top:16px;font-size:14px">— ${escapeHtml(profile.name)}</p>
-</div>`,
+            html: autoReplyHtml({safeFirst: escapeHtml(first)}),
         });
         if (replyError) console.error("[contact] auto-reply failed:", replyError);
     }

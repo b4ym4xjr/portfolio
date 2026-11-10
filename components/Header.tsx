@@ -52,7 +52,7 @@ export function Header() {
                 <a
                     href="#home"
                     data-cursor="link"
-                    aria-label="Sitaram Oli — home"
+                    aria-label="S.R. Oli — home"
                     className="group -ml-1 inline-flex min-h-11 min-w-11 items-center px-1 text-[1.65rem] font-bold leading-none tracking-tight"
                 >
                     S

@@ -30,17 +30,17 @@ export const metadata: Metadata = {
     metadataBase: new URL(siteUrl),
     title: "S.R. Oli — Security Analyst | Software Engineer | Penetration Tester",
     description:
-        "Portfolio of Sitaram Oli, a software engineer building secure, scalable and user-centric digital solutions across software engineering" +
+        "Portfolio of S.R. Oli, a software engineer building secure, scalable and user-centric digital solutions across software engineering" +
         " and cybersecurity",
     openGraph: {
-        title: "Sitaram Oli — Security Analyst | Software Engineer | Penetration Tester",
+        title: "S.R. Oli — Security Analyst | Software Engineer | Penetration Tester",
         description:
             "Secure, scalable and user-centric digital solutions at the intersection of software engineering and cybersecurity.",
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Sitaram Oli — Security Analyst | Software Engineer | Penetration Tester",
+        title: "S.R. Oli — Security Analyst | Software Engineer | Penetration Tester",
         description:
             "Secure, scalable and user-centric digital solutions at the intersection of software engineering and cybersecurity.",
     },
