@@ -8,7 +8,7 @@ export const profile = {
     location: "Sudbury, ON",
     country: "Canada",
     timeZone: "America/Toronto",
-    email: "baymaxjr@proton.me",
+    email: "sitaramoli1998@gmail.com",
     cv: "/Sitaram-Oli-CV.pdf",
 } as const;
 
